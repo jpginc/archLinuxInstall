@@ -23,5 +23,7 @@ echo correcting the mount drive
 sed -i s/sda3/sda2/ /boot/syslinux/syslinux.cfg
 echo removing the boot selection notice
 sed -i s/TIMEOUT\ 50/TIMEOUT\ 1/ /boot/syslinux/syslinux.cfg
+echo updaing the system
+pacman -Syu --noconfirm
 echo the computer needs to be restarted
 echo type exit then reboot
