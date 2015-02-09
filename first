@@ -11,6 +11,6 @@ echo mounting file system for install
 mount /dev/sda2 /mnt
 echo installing Arch linux
 pacstrap /mnt base base-devel
-cp ../archLinuxInstall /mnt/home
+cp ../archLinuxInstall /mnt/home -r
 genfstab -U -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash
