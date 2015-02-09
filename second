@@ -7,13 +7,13 @@ cd /usr/share/zoneinfo/
 select d in */; do test -n "$d" && break; echo ">>> Invalid Selection"; done
 cd "/usr/share/zoneinfo/$d"
 printf "Please select Sub Zone:\n"
-select e in */; do test -n "$e" && break; echo ">>> Invalid Selection"; done
+select e in *; do test -n "$e" && break; echo ">>> Invalid Selection"; done
 ln -s "/usr/share/zoneinfo/$d$e" /etc/localtime
 hwclock --systohc --utc
 echo Please enter a hostname
 read name
 echo $name > /etc/hostname
-sed -i /localhost/\ s/\$/$name/ /etc/hosts
+sed -i /localhost/\ s/\$/\ $name/ /etc/hosts
 systemctl enable dhcpcd
 echo Enter a password for root\n
 passwd
