@@ -1,0 +1,19 @@
+echo set the language to english us
+sed -i s/\#en_US.UTF-8\ UTF-8/en_US.UTF-8\ UTF-8/ /etc/locale.gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+export LANG=en_US.UTF-8
+printf "Please select Zone:\n"
+cd /usr/share/zoneinfo/
+select d in */; do test -n "$d" && break; echo ">>> Invalid Selection"; done
+cd "/usr/share/zoneinfo/$d"
+printf "Please select Sub Zone:\n"
+select e in */; do test -n "$e" && break; echo ">>> Invalid Selection"; done
+ln -s "/usr/share/zoneinfo/$d$e" /etc/localtime
+hwclock --systohc --utc
+echo Please enter a hostname
+read name
+echo $name > /etc/hostname
+sed -i /localhost/\ s/\$/$name/ /etc/hosts
+systemctl enable dhcpcd
+echo Enter a password for root\n
+passwd
