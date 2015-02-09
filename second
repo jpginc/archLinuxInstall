@@ -17,3 +17,5 @@ sed -i /localhost/\ s/\$/\ $name/ /etc/hosts
 systemctl enable dhcpcd
 echo Enter a password for root\n
 passwd
+pacman -S syslinux gptfdisk --noconfirm
+syslinux-install_update -i -a -m
