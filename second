@@ -15,7 +15,13 @@ read name
 echo $name > /etc/hostname
 sed -i /localhost/\ s/\$/\ $name/ /etc/hosts
 systemctl enable dhcpcd
-echo Enter a password for root\n
+echo Enter a password for root
 passwd
 pacman -S syslinux gptfdisk --noconfirm
 syslinux-install_update -i -a -m
+echo correcting the mount drive
+sed -i s/sda3/sda2/ /boot/syslinux/syslinux.cfg
+echo removing the boot selection notice
+sed -i s/TIMEOUT\ 50/TIMEOUT\ 1/ /boot/syslinux/syslinux.cfg
+echo the computer needs to be restarted
+echo type exit then reboot
