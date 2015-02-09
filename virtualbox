@@ -1,0 +1,8 @@
+pacman -S virtualbox virtualbox-host-modules net-tools virtualbox-guest-modules virtualbox-guest-iso virtualbox-guest-utils --noconfirm
+echo vboxpci > /etc/modules-load.d/virtualbox.conf
+printf "vboxguest\nvboxsf\nvboxvideo" > /etc/modules-load.d/virtualbox.conf
+echo enter the username created in the second step
+read username
+gpasswd -a $username vboxsf
+gpasswd -a root vboxsf
+
