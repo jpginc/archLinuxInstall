@@ -1,3 +1,13 @@
 #!/bin/bash
+echo Setting language
 locale-gen
 export LANG=de_DE.UTF-8
+echo formatting dev/sda
+echo -g "o\ny\nn\n1\n\n+1024M\n8200\nn\n\n\n\n\np\nw\ny\n" | gdisk /dev/sda
+mkfs.ext4 /dev/sda2
+mkswp /dev/sda1
+swapon /dev/sda1
+echo mounting file system for install
+mount /dev/sda2 /mnt
+echo installing Arch linux
+pacstrap -i /mnt base base-devel
