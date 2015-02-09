@@ -25,5 +25,12 @@ echo removing the boot selection notice
 sed -i s/TIMEOUT\ 50/TIMEOUT\ 1/ /boot/syslinux/syslinux.cfg
 echo updaing the system
 pacman -Syu --noconfirm
+echo enter a username, this will be the main user
+read username
+useradd -m -G wheel -s /bin/bash $username
+echo enter a password for $username
+passwd $username
+gpasswd -a $username vboxusers
+gpasswd -a root vboxusers
 echo the computer needs to be restarted
 echo type exit then reboot
