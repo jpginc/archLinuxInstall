@@ -5,4 +5,5 @@ echo enter the username created in the second step
 read username
 gpasswd -a $username vboxsf
 gpasswd -a root vboxsf
-
+gpasswd -a $username vboxusers
+gpasswd -a root vboxusers

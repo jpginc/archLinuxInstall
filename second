@@ -17,7 +17,7 @@ sed -i /localhost/\ s/\$/\ $name/ /etc/hosts
 systemctl enable dhcpcd
 echo Enter a password for root
 passwd
-pacman -S syslinux gptfdisk --noconfirm
+pacman -S syslinux gptfdisk git --noconfirm
 syslinux-install_update -i -a -m
 echo correcting the mount drive
 sed -i s/sda3/sda2/ /boot/syslinux/syslinux.cfg
@@ -30,7 +30,5 @@ read username
 useradd -m -G wheel -s /bin/bash $username
 echo enter a password for $username
 passwd $username
-gpasswd -a $username vboxusers
-gpasswd -a root vboxusers
 echo the computer needs to be restarted
 echo type exit then reboot
